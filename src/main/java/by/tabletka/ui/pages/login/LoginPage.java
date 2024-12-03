@@ -40,4 +40,24 @@ public class LoginPage {
         buttonLoginWebElement.click();
         return this;
     }
+
+    public String getEmailErrorMessage() {
+        By emailErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_EMAIL);
+        WebElement emailErrorMessageWebElement = this.driver.findElement(emailErrorMessageBy);
+
+        return emailErrorMessageWebElement.getText();
+    }
+
+    public String getPasswordErrorMessage() {
+        By passwordErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_REQUIRED_PASSWORD);
+        WebElement passwordErrorMessageWebElement = this.driver.findElement(passwordErrorMessageBy);
+
+        return passwordErrorMessageWebElement.getText();
+    }
+    public String getInvalidLoginDataErrorMessage() {
+        By invalidLoginDataErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA);
+        WebElement invalidLoginDataErrorMessageWebElement = this.driver.findElement(invalidLoginDataErrorMessageBy);
+
+        return invalidLoginDataErrorMessageWebElement.getText();
+    }
 }
