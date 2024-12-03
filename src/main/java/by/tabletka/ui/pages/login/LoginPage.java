@@ -54,6 +54,7 @@ public class LoginPage {
 
         return passwordErrorMessageWebElement.getText();
     }
+
     public String getInvalidLoginDataErrorMessage() {
         By invalidLoginDataErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA);
         WebElement invalidLoginDataErrorMessageWebElement = this.driver.findElement(invalidLoginDataErrorMessageBy);
