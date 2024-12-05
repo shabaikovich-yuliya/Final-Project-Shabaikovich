@@ -42,23 +42,30 @@ public class LoginPage {
     }
 
     public String getEmailErrorMessage() {
-        By emailErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_EMAIL);
+        By emailErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_EMAIL_XPATH);
         WebElement emailErrorMessageWebElement = this.driver.findElement(emailErrorMessageBy);
 
         return emailErrorMessageWebElement.getText();
     }
 
     public String getPasswordErrorMessage() {
-        By passwordErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_REQUIRED_PASSWORD);
+        By passwordErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_REQUIRED_PASSWORD_XPATH);
         WebElement passwordErrorMessageWebElement = this.driver.findElement(passwordErrorMessageBy);
 
         return passwordErrorMessageWebElement.getText();
     }
 
     public String getInvalidLoginDataErrorMessage() {
-        By invalidLoginDataErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA);
+        By invalidLoginDataErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH);
         WebElement invalidLoginDataErrorMessageWebElement = this.driver.findElement(invalidLoginDataErrorMessageBy);
 
         return invalidLoginDataErrorMessageWebElement.getText();
+    }
+
+    public static WebElement findElementOnPageByXpath(String xpath) {
+        By elementOnPageBy = By.xpath(xpath);
+        WebElement elementOnPageWebElement = Driver.getDriver().findElement(elementOnPageBy);
+
+        return elementOnPageWebElement;
     }
 }
