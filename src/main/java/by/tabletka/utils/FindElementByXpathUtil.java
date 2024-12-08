@@ -4,7 +4,7 @@ import by.tabletka.ui.driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class FindElementByXpath {
+public class FindElementByXpathUtil {
 
     public static WebElement findElementOnPageByXpath(String xpath) {
         By elementOnPageBy = By.xpath(xpath);
