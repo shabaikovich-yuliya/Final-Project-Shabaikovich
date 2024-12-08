@@ -61,11 +61,4 @@ public class LoginPage {
 
         return invalidLoginDataErrorMessageWebElement.getText();
     }
-
-    public static WebElement findElementOnPageByXpath(String xpath) {
-        By elementOnPageBy = By.xpath(xpath);
-        WebElement elementOnPageWebElement = Driver.getDriver().findElement(elementOnPageBy);
-
-        return elementOnPageWebElement;
-    }
 }
