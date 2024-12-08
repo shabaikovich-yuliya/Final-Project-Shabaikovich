@@ -4,6 +4,7 @@ import by.tabletka.ui.driver.Driver;
 import by.tabletka.ui.pages.login.LoginPage;
 import by.tabletka.ui.pages.login.LoginPageMessages;
 import by.tabletka.ui.pages.login.LoginPageXpath;
+import by.tabletka.utils.FindElementByXpath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,8 +59,20 @@ public class LoginPageTest extends BaseTest {
                 .fillPassword("password-test")
                 .clickLoginButton();
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOf(LoginPage.findElementOnPageByXpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)));
+        wait.until(ExpectedConditions.visibilityOf(FindElementByXpath.findElementOnPageByXpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)));
 
         Assertions.assertEquals(LoginPageMessages.INVALID_LOGIN_DATA_MESSAGE, loginPage.getInvalidLoginDataErrorMessage());
+    }
+
+    @Test
+    @DisplayName("Тест 5 - Невалидная длина введёного пароля")
+    public void testInvalidPasswordLength() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.openLoginForm()
+                .fillEmail("test@test.com")
+                .fillPassword("12")
+                .clickLoginButton();
+
+        Assertions.assertEquals(LoginPageMessages.INVALID_PASSWORD_LENGTH_MESSAGE, loginPage.getPasswordErrorMessage());
     }
 }
