@@ -5,6 +5,7 @@ import by.tabletka.ui.pages.login.LoginPage;
 import by.tabletka.ui.pages.login.LoginPageMessages;
 import by.tabletka.ui.pages.login.LoginPageXpath;
 import by.tabletka.utils.FindElementByXpathUtil;
+import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,14 +15,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginPageTest extends BaseTest {
-    private String EMPTY_VALUE = "";
 
     @Test
     @DisplayName("Тест 1 - Пустое поле E-mail + заполненный пароль")
     public void testEmptyEmail() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
-                .fillEmail(EMPTY_VALUE)
+                .fillEmail(GenerationDataUtil.EMPTY_VALUE)
                 .fillPassword("any-password");
 
         Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
@@ -44,7 +44,7 @@ public class LoginPageTest extends BaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
                 .fillEmail("test@test.com")
-                .fillPassword(EMPTY_VALUE)
+                .fillPassword(GenerationDataUtil.EMPTY_VALUE)
                 .clickLoginButton();
 
         Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
