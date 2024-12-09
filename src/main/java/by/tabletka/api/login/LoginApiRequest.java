@@ -1,5 +1,6 @@
 package by.tabletka.api.login;
 
+import com.github.javafaker.Faker;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
@@ -19,7 +20,7 @@ public class LoginApiRequest {
                 .build();
     }
 
-    public static String getBody() {
-        return "_csrf=kT96ufzuKLLm3zGw7HXmqA3KHAXnhrVvBiPYRNJ68UrCajHypJ1t67y1ePm-J5bdV4V2MpWy_wVcS7k9qCOzJw%3D%3D&email=sfsdfdsfds%40dfdf.fd&password=cxdfd&rememberMe=on";
+    public static String getBody(String email, String password) {
+        return "_csrf=kT96ufzuKLLm3zGw7HXmqA3KHAXnhrVvBiPYRNJ68UrCajHypJ1t67y1ePm-J5bdV4V2MpWy_wVcS7k9qCOzJw%3D%3D&email=" + email + "&password=" + password + "&rememberMe=on";
     }
 }
