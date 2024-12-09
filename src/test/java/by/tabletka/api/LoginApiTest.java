@@ -18,14 +18,14 @@ public class LoginApiTest {
     }
 
     @Test
-    @DisplayName("API. Тест 1 - Авторизация с невалидным логином и невалидным паролем")
-    public void testAuthorizationWithInvalidLoginAndInvalidPassword() {
+    @DisplayName("API. Тест 1 - Авторизация с невалидным email и невалидным паролем")
+    public void testAuthorizationWithInvalidEmailAndInvalidPassword() {
         String email = GenerationDataUtil.generateEmail();
         String password = GenerationDataUtil.generatePassword();
 
         given()
                 .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBody())
+                .body(LoginApiRequest.getBody(email, password))
         .when()
                 .log().all()
                 .post()
@@ -35,4 +35,22 @@ public class LoginApiTest {
                 .body("status", equalTo(-1))
                 .body("log", equalTo("Не найден пользователь или неправильный пароль."));
     }
+
+    @Test
+    @DisplayName("API. Тест 2 - Авторизация с пустым полем email и с пустым полем пароль")
+    public void testAuthorizationWithEmptyEmailAndEmptyPassword() {
+        given()
+                .spec(LoginApiRequest.requestSpecification)
+                .body(LoginApiRequest.getBody(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE))
+        .when()
+                .log().all()
+                .post()
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("status", equalTo(-1))
+                .body("log", equalTo("Не найден пользователь или неправильный пароль."));
+    }
+
+
 }
