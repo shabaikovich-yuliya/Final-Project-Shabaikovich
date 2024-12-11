@@ -7,14 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.equalTo;
 
 public class LoginApiTest {
 
     @BeforeEach
     void setUp() {
-        LoginApiRequest.initRequestSpecification();
+        LoginApiRequest.initRequestSpecificationToLogin();
     }
 
     @Test
@@ -23,7 +22,7 @@ public class LoginApiTest {
 
         given()
                 .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBody(GenerationDataUtil.generateEmail(), GenerationDataUtil.generatePassword()))
+                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generatePassword()))
         .when()
                 .log().all()
                 .post()
@@ -40,7 +39,7 @@ public class LoginApiTest {
 
         given()
                 .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBody(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE))
+                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE))
         .when()
                 .log().all()
                 .post()
@@ -57,7 +56,7 @@ public class LoginApiTest {
 
         given()
                 .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBody(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generatePassword()))
+                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generatePassword()))
         .when()
                 .log().all()
                 .post()
@@ -74,7 +73,7 @@ public class LoginApiTest {
 
         given()
                 .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBody(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE))
+                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE))
         .when()
                 .log().all()
                 .post()
