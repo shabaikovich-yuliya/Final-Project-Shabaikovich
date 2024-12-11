@@ -7,12 +7,17 @@ public class GenerationDataUtil {
     public static String EMPTY_VALUE = "";
 
     public static String generateEmail() {
-        Faker faker = new Faker();
-        return faker.internet().emailAddress();
+        Faker fakerEmail = new Faker();
+        return fakerEmail.internet().emailAddress();
     }
 
     public static String generatePassword() {
-        Faker faker = new Faker();
-        return faker.internet().password();
+        Faker fakerPassword = new Faker();
+        return fakerPassword.internet().password();
+    }
+
+    public static String generateName() {
+        Faker fakerName = new Faker();
+        return fakerName.name().name();
     }
 }
