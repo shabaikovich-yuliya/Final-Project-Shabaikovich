@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginPageTest extends BaseTest {
+public class LoginPageUiTest extends BaseTest {
 
     @Test
     @DisplayName("Тест 1 - Пустое поле E-mail + заполненный пароль")
