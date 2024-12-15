@@ -71,7 +71,7 @@ public class SignupApiTest {
     public void testSignupWithEmptyName() {
         given()
                 .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), "",
+                .body(LoginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE,
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.generatePassword(), true))
                 .when()
                 .log().all()
