@@ -9,10 +9,13 @@ import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static by.tabletka.ui.driver.Driver.getDriver;
 
 public class LoginPageUiTest extends BaseTest {
 
@@ -58,6 +61,7 @@ public class LoginPageUiTest extends BaseTest {
                 .fillEmail("test@test.com")
                 .fillPassword("password-test")
                 .clickLoginButton();
+
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(FindElementByXpathUtil.findElementOnPageByXpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)));
 
@@ -74,5 +78,22 @@ public class LoginPageUiTest extends BaseTest {
                 .clickLoginButton();
 
         Assertions.assertEquals(LoginPageMessages.INVALID_PASSWORD_LENGTH_MESSAGE, loginPage.getPasswordErrorMessage());
+    }
+
+    @Test
+    @DisplayName("Тест 6 - Не подтверждённый пользователь")
+    public void testNotConfirmedUser() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.openLoginForm()
+                .fillEmail("test1@test.com")
+                .fillPassword("test1@test.com")
+                .clickLoginButton();
+
+        WebElement errorMessageWebElement = loginPage.getNotConfirmedUserErrorMessage();
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(errorMessageWebElement));
+
+        Assertions.assertEquals(LoginPageMessages.NOT_CONFIRMED_USER_MESSAGE, errorMessageWebElement.getText());
     }
 }

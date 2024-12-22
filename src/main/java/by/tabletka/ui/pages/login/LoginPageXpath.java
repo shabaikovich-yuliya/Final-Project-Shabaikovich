@@ -8,4 +8,5 @@ public class LoginPageXpath {
     public static final String ERROR_MESSAGE_EMAIL_XPATH = "//*[@id='login-name-wrap']//*[@class='help-block form-error']";
     public static final String ERROR_MESSAGE_REQUIRED_PASSWORD_XPATH = "//*[@id='login-pass-wrap']//*[@class='help-block form-error']";
     public static final String ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH = "//*[@class='errors-login']";
+    public static final String ERROR_MESSAGE_NOT_CONFIRMED_USER_XPATH = "//*[@data-modal='login']//*[@class='errors-login']";
 }

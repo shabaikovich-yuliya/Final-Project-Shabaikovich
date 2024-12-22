@@ -44,4 +44,8 @@ public class LoginPage {
     public String getInvalidLoginDataErrorMessage() {
         return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)).getText();
     }
+
+    public WebElement getNotConfirmedUserErrorMessage() {
+        return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_NOT_CONFIRMED_USER_XPATH));
+    }
 }
