@@ -14,51 +14,34 @@ public class LoginPage {
     }
 
     public LoginPage openLoginForm() {
-        By buttonOpenLoginFormBy = By.xpath(LoginPageXpath.BUTTON_LOGIN_ON_MAIN_PAGE_XPATH);
-        WebElement buttonOpenLoginFormWebElement = this.driver.findElement(buttonOpenLoginFormBy);
-        buttonOpenLoginFormWebElement.click();
+        driver.findElement(By.xpath(LoginPageXpath.BUTTON_LOGIN_ON_MAIN_PAGE_XPATH)).click();
         return this;
     }
 
     public LoginPage fillEmail(String email) {
-        By inputEmailBy = By.xpath(LoginPageXpath.INPUT_EMAIL_XPATH);
-        WebElement inputEmailWebElement = this.driver.findElement(inputEmailBy);
-        inputEmailWebElement.sendKeys(email);
+        driver.findElement(By.xpath(LoginPageXpath.INPUT_EMAIL_XPATH)).sendKeys(email);
         return this;
     }
 
     public LoginPage fillPassword(String password) {
-        By inputPasswordBy = By.xpath(LoginPageXpath.INPUT_PASSWORD_XPATH);
-        WebElement inputPasswordWebElement = this.driver.findElement(inputPasswordBy);
-        inputPasswordWebElement.sendKeys(password);
+        driver.findElement(By.xpath(LoginPageXpath.INPUT_PASSWORD_XPATH)).sendKeys(password);
         return this;
     }
 
     public LoginPage clickLoginButton() {
-        By buttonLoginBy = By.xpath(LoginPageXpath.BUTTON_LOGIN_ON_FORM_XPATH);
-        WebElement buttonLoginWebElement = this.driver.findElement(buttonLoginBy);
-        buttonLoginWebElement.click();
+        driver.findElement(By.xpath(LoginPageXpath.BUTTON_LOGIN_ON_FORM_XPATH)).click();
         return this;
     }
 
     public String getEmailErrorMessage() {
-        By emailErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_EMAIL_XPATH);
-        WebElement emailErrorMessageWebElement = this.driver.findElement(emailErrorMessageBy);
-
-        return emailErrorMessageWebElement.getText();
+      return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_EMAIL_XPATH)).getText();
     }
 
     public String getPasswordErrorMessage() {
-        By passwordErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_REQUIRED_PASSWORD_XPATH);
-        WebElement passwordErrorMessageWebElement = this.driver.findElement(passwordErrorMessageBy);
-
-        return passwordErrorMessageWebElement.getText();
+        return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_REQUIRED_PASSWORD_XPATH)).getText();
     }
 
     public String getInvalidLoginDataErrorMessage() {
-        By invalidLoginDataErrorMessageBy = By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH);
-        WebElement invalidLoginDataErrorMessageWebElement = this.driver.findElement(invalidLoginDataErrorMessageBy);
-
-        return invalidLoginDataErrorMessageWebElement.getText();
+        return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)).getText();
     }
 }
