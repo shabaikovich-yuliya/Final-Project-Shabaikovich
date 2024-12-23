@@ -39,7 +39,7 @@ public class SignUpPage {
         return this;
     }
 
-    public SignUpPage clickCinfirmCheckbox() {
+    public SignUpPage clickConfirmCheckbox() {
         driver.findElement(By.xpath(SignUpPageXpath.CONFIRM_CHECKBOX_XPATH)).click();
         return this;
     }
