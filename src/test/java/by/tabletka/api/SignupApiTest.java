@@ -1,6 +1,6 @@
 package by.tabletka.api;
 
-import by.tabletka.api.login.LoginApiRequest;
+import by.tabletka.api.signup.SignUpApiRequest;
 import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -10,12 +10,12 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class SignupApiTest extends BaseApiTest {
-    LoginApiRequest loginApiRequest;
+    SignUpApiRequest signUpApiRequest;
 
     @BeforeEach
     void setUp() {
-        if (this.loginApiRequest == null) {
-            this.loginApiRequest = new LoginApiRequest(BASE_URL);
+        if (this.signUpApiRequest == null) {
+            this.signUpApiRequest = new SignUpApiRequest(BASE_URL);
         }
     }
 
@@ -23,8 +23,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 1 - Регистрация со всеми пустыми полями")
     public void testSignupWithAllEmptyFields() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE,
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE,
                         GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE, true))
         .when()
                 .log().all()
@@ -40,8 +40,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 2 - Регистрация с пустым полем Email")
     public void testSignupWithEmptyEmail() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.generatePassword(), true))
         .when()
                 .log().all()
@@ -57,8 +57,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 3 - Регистрация с невалидным полем Email")
     public void testSignupWithInvalidEmail() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest("testemail", GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest("testemail", GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.generatePassword(), true))
                 .when()
                 .log().all()
@@ -74,8 +74,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 4 - Регистрация с пустым полем Имя")
     public void testSignupWithEmptyName() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE,
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE,
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.generatePassword(), true))
                 .when()
                 .log().all()
@@ -91,8 +91,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 5 - Регистрация с пустыми полями Пароль и подтверждение пароля")
     public void testSignupWithEmptyPasswords() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE, true))
                 .when()
                 .log().all()
@@ -108,8 +108,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 6 - Регистрация с пустым полем подтверждение пароля")
     public void testSignupWithEmptyConfirmPassword() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.EMPTY_VALUE, true))
                 .when()
                 .log().all()
@@ -125,8 +125,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 7 - Регистрация с пустым полем Пароль")
     public void testSignupWithEmptyPassword() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generatePassword(), true))
                 .when()
                 .log().all()
@@ -142,8 +142,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 8 - Регистрация с несовпадающими паролями")
     public void testSignupWithNotMatchedPasswords() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), "1234567" , true))
                 .when()
                 .log().all()
@@ -159,8 +159,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 9 - Регистрация с недостаточным количеством символов в пароле")
     public void testSignupWithInvalidPassword() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         "12", "12", true))
                 .when()
                 .log().all()
@@ -176,8 +176,8 @@ public class SignupApiTest extends BaseApiTest {
     @DisplayName("API. Тест 10 - Регистрация с незаполненным согласием")
     public void testSignupWithoutAgree() {
         given()
-                .spec(this.loginApiRequest.initRequestSpecificationToSignup())
-                .body(this.loginApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
+                .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
+                .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.generatePassword(), false))
                 .when()
                 .log().all()
