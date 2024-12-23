@@ -1,21 +1,13 @@
 package by.tabletka.ui;
 
-import by.tabletka.ui.driver.Driver;
 import by.tabletka.ui.pages.login.LoginPage;
 import by.tabletka.ui.pages.login.LoginPageMessages;
-import by.tabletka.ui.pages.login.LoginPageXpath;
-import by.tabletka.utils.FindElementByXpathUtil;
 import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static by.tabletka.ui.driver.Driver.getDriver;
 
 public class LoginPageUiTest extends BaseTest {
 
@@ -62,10 +54,11 @@ public class LoginPageUiTest extends BaseTest {
                 .fillPassword("password-test")
                 .clickLoginButton();
 
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOf(FindElementByXpathUtil.findElementOnPageByXpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)));
+        WebElement invalidLoginDataErrorMessageWebElement = loginPage.getInvalidLoginDataErrorMessageWebElement();
 
-        Assertions.assertEquals(LoginPageMessages.INVALID_LOGIN_DATA_MESSAGE, loginPage.getInvalidLoginDataErrorMessage());
+        this.wait.until(ExpectedConditions.visibilityOf(invalidLoginDataErrorMessageWebElement));
+
+        Assertions.assertEquals(LoginPageMessages.INVALID_LOGIN_DATA_MESSAGE, invalidLoginDataErrorMessageWebElement.getText());
     }
 
     @Test
@@ -89,10 +82,9 @@ public class LoginPageUiTest extends BaseTest {
                 .fillPassword("test1@test.com")
                 .clickLoginButton();
 
-        WebElement errorMessageWebElement = loginPage.getNotConfirmedUserErrorMessage();
+        WebElement errorMessageWebElement = loginPage.getNotConfirmedUserErrorMessageWebElement();
 
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOf(errorMessageWebElement));
+        this.wait.until(ExpectedConditions.visibilityOf(errorMessageWebElement));
 
         Assertions.assertEquals(LoginPageMessages.NOT_CONFIRMED_USER_MESSAGE, errorMessageWebElement.getText());
     }

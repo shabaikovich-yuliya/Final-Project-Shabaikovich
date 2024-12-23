@@ -41,11 +41,11 @@ public class LoginPage {
         return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_REQUIRED_PASSWORD_XPATH)).getText();
     }
 
-    public String getInvalidLoginDataErrorMessage() {
-        return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH)).getText();
+    public WebElement getInvalidLoginDataErrorMessageWebElement() {
+        return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_INVALID_LOGIN_DATA_XPATH));
     }
 
-    public WebElement getNotConfirmedUserErrorMessage() {
+    public WebElement getNotConfirmedUserErrorMessageWebElement() {
         return driver.findElement(By.xpath(LoginPageXpath.ERROR_MESSAGE_NOT_CONFIRMED_USER_XPATH));
     }
 }
