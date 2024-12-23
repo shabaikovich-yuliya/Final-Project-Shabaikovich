@@ -16,19 +16,4 @@ public class LoginApiRequest extends BaseApiRequest {
         return "_csrf="+this.csrfTokenBody+"&email="
                 + email + "&password=" + password + "&rememberMe=on";
     }
-
-   /* public RequestSpecification initRequestSpecificationToSignup() {
-        return this.initRequestSpecification().basePath("ajax-request/signup");
-    }
-
-    public String getBodySignupRequest(String regEmail, String regName, String regPassword, String regConfirmPassword, boolean regAgree) {
-        String regAgreeString = regAgree ? "on" : "off";
-
-        return "_csrf=" + this.csrfTokenBody
-                + "&reg-email=" + regEmail
-                + "&reg-name=" + regName
-                + "&reg-password=" + regPassword
-                + "&reg-confirm=" + regPassword
-                + "&reg-agree=" + regAgreeString;
-    }*/
 }

@@ -14,10 +14,7 @@ public class Driver {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--headless");
-
-            driver = new ChromeDriver(chromeOptions);
+            driver = new ChromeDriver();
         }
 
         driver.manage().window().maximize();
