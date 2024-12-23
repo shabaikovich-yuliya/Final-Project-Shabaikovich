@@ -20,7 +20,7 @@ import static by.tabletka.ui.driver.Driver.getDriver;
 public class LoginPageUiTest extends BaseTest {
 
     @Test
-    @DisplayName("Тест 1 - Пустое поле E-mail + заполненный пароль")
+    @DisplayName("Логин: Тест 1 - Пустое поле E-mail + заполненный пароль")
     public void testEmptyEmail() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
@@ -31,7 +31,7 @@ public class LoginPageUiTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Тест 2 - Некорректная форма E-mail + заполненный пароль")
+    @DisplayName("Логин: Тест 2 - Некорректная форма E-mail + заполненный пароль")
     public void testInvalidEmailFormat() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
@@ -42,7 +42,7 @@ public class LoginPageUiTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Тест 3 - Заполненный E-mail + пустое поле пароль")
+    @DisplayName("Логин: Тест 3 - Заполненный E-mail + пустое поле пароль")
     public void testEmptyPassword() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
@@ -54,7 +54,7 @@ public class LoginPageUiTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Тест 4 - Неправильные данные для логина")
+    @DisplayName("Логин: Тест 4 - Неправильные данные для логина")
     public void testInvalidLoginData() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
@@ -69,7 +69,7 @@ public class LoginPageUiTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Тест 5 - Невалидная длина введёного пароля")
+    @DisplayName("Логин: Тест 5 - Невалидная длина введёного пароля")
     public void testInvalidPasswordLength() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
@@ -81,7 +81,7 @@ public class LoginPageUiTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Тест 6 - Не подтверждённый пользователь")
+    @DisplayName("Логин: Тест 6 - Не подтверждённый пользователь")
     public void testNotConfirmedUser() {
         LoginPage loginPage = new LoginPage();
         loginPage.openLoginForm()
@@ -95,5 +95,15 @@ public class LoginPageUiTest extends BaseTest {
         wait.until(ExpectedConditions.visibilityOf(errorMessageWebElement));
 
         Assertions.assertEquals(LoginPageMessages.NOT_CONFIRMED_USER_MESSAGE, errorMessageWebElement.getText());
+    }
+
+    @Test
+    @DisplayName("Логин: Тест 7: Пустое поле E-mail и пустое поле Пароль")
+    public void testEmptyEmailAndEmptyPassword() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.openLoginForm().clickLoginButton();
+
+        Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
+        Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
     }
 }
