@@ -1,23 +1,15 @@
-package by.tabletka.api.login;
+package by.tabletka.api.signup;
 
 import by.tabletka.api.BaseApiRequest;
 import io.restassured.specification.RequestSpecification;
 
-public class LoginApiRequest extends BaseApiRequest {
-    public LoginApiRequest(String baseUrl) {
+public class SignUpApiRequest extends BaseApiRequest {
+
+    public SignUpApiRequest(String baseUrl) {
         super(baseUrl);
     }
 
-    public RequestSpecification initRequestSpecificationToLogin() {
-        return this.initRequestSpecification().basePath("ajax-request/login");
-    }
-
-    public String getBodyLoginRequest(String email, String password) {
-        return "_csrf="+this.csrfTokenBody+"&email="
-                + email + "&password=" + password + "&rememberMe=on";
-    }
-
-   /* public RequestSpecification initRequestSpecificationToSignup() {
+    public RequestSpecification initRequestSpecificationToSignup() {
         return this.initRequestSpecification().basePath("ajax-request/signup");
     }
 
@@ -30,5 +22,5 @@ public class LoginApiRequest extends BaseApiRequest {
                 + "&reg-password=" + regPassword
                 + "&reg-confirm=" + regPassword
                 + "&reg-agree=" + regAgreeString;
-    }*/
+    }
 }

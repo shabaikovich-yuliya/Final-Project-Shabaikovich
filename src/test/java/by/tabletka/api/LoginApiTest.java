@@ -9,11 +9,14 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class LoginApiTest {
+public class LoginApiTest extends BaseApiTest{
+    LoginApiRequest loginApiRequest;
 
     @BeforeEach
     void setUp() {
-        LoginApiRequest.initRequestSpecificationToLogin();
+        if (this.loginApiRequest == null) {
+            this.loginApiRequest = new LoginApiRequest(BASE_URL);
+        }
     }
 
     @Test
@@ -21,8 +24,8 @@ public class LoginApiTest {
     public void testAuthorizationWithInvalidEmailAndInvalidPassword() {
 
         given()
-                .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generatePassword()))
+                .spec(this.loginApiRequest.initRequestSpecificationToLogin())
+                .body(this.loginApiRequest.getBodyLoginRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generatePassword()))
         .when()
                 .log().all()
                 .post()
@@ -38,8 +41,8 @@ public class LoginApiTest {
     public void testAuthorizationWithEmptyEmailAndEmptyPassword() {
 
         given()
-                .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE))
+                .spec(this.loginApiRequest.initRequestSpecificationToLogin())
+                .body(this.loginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE))
         .when()
                 .log().all()
                 .post()
@@ -55,8 +58,8 @@ public class LoginApiTest {
     public void testAuthorizationWithEmptyEmailAndFilledPassword() {
 
         given()
-                .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generatePassword()))
+                .spec(this.loginApiRequest.initRequestSpecificationToLogin())
+                .body(this.loginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generatePassword()))
         .when()
                 .log().all()
                 .post()
@@ -72,8 +75,8 @@ public class LoginApiTest {
     public void testAuthorizationWithFilledEmailAndEmptyPassword() {
 
         given()
-                .spec(LoginApiRequest.requestSpecification)
-                .body(LoginApiRequest.getBodyLoginRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE))
+                .spec(this.loginApiRequest.initRequestSpecificationToLogin())
+                .body(this.loginApiRequest.getBodyLoginRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.EMPTY_VALUE))
         .when()
                 .log().all()
                 .post()
