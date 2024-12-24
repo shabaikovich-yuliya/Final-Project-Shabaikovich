@@ -7,6 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class BaseApiRequest {
+    public static final int STATUS_RESPONSE_SUCCESS = 1;
+    public static final int STATUS_RESPONSE_FAILED = -1;
+
     protected String baseUrl;
 
     protected String csrfTokenCookie;
