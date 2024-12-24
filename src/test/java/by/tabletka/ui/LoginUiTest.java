@@ -1,7 +1,7 @@
 package by.tabletka.ui;
 
 import by.tabletka.ui.pages.login.Login;
-import by.tabletka.ui.pages.login.LoginPageMessages;
+import by.tabletka.ui.pages.login.LoginMessages;
 import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPageUiTest extends BaseTest {
+public class LoginUiTest extends BaseTest {
 
     @Test
     @DisplayName("Логин: Тест 1 - Пустое поле E-mail + заполненный пароль")
@@ -19,7 +19,7 @@ public class LoginPageUiTest extends BaseTest {
                 .fillEmail(GenerationDataUtil.EMPTY_VALUE)
                 .fillPassword(GenerationDataUtil.generatePassword());
 
-        Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
+        Assertions.assertEquals(LoginMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class LoginPageUiTest extends BaseTest {
                 .fillEmail(invalidEmail)
                 .fillPassword(GenerationDataUtil.generatePassword());
 
-        Assertions.assertEquals(LoginPageMessages.INVALID_EMAIL_MESSAGE, loginPage.getEmailErrorMessage());
+        Assertions.assertEquals(LoginMessages.INVALID_EMAIL_MESSAGE, loginPage.getEmailErrorMessage());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class LoginPageUiTest extends BaseTest {
                 .fillPassword(GenerationDataUtil.EMPTY_VALUE)
                 .clickLoginButton();
 
-        Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
+        Assertions.assertEquals(LoginMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class LoginPageUiTest extends BaseTest {
 
         this.wait.until(ExpectedConditions.visibilityOf(invalidLoginDataErrorMessageWebElement));
 
-        Assertions.assertEquals(LoginPageMessages.INVALID_LOGIN_DATA_MESSAGE, invalidLoginDataErrorMessageWebElement.getText());
+        Assertions.assertEquals(LoginMessages.INVALID_LOGIN_DATA_MESSAGE, invalidLoginDataErrorMessageWebElement.getText());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class LoginPageUiTest extends BaseTest {
                 .fillPassword(invalidPassword)
                 .clickLoginButton();
 
-        Assertions.assertEquals(LoginPageMessages.INVALID_PASSWORD_LENGTH_MESSAGE, loginPage.getPasswordErrorMessage());
+        Assertions.assertEquals(LoginMessages.INVALID_PASSWORD_LENGTH_MESSAGE, loginPage.getPasswordErrorMessage());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class LoginPageUiTest extends BaseTest {
 
         this.wait.until(ExpectedConditions.visibilityOf(errorMessageWebElement));
 
-        Assertions.assertEquals(LoginPageMessages.NOT_CONFIRMED_USER_MESSAGE, errorMessageWebElement.getText());
+        Assertions.assertEquals(LoginMessages.NOT_CONFIRMED_USER_MESSAGE, errorMessageWebElement.getText());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class LoginPageUiTest extends BaseTest {
                 .fillPassword(GenerationDataUtil.EMPTY_VALUE)
                 .clickLoginButton();
 
-        Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
-        Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
+        Assertions.assertEquals(LoginMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
+        Assertions.assertEquals(LoginMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
     }
 }

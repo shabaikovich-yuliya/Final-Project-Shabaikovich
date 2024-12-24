@@ -1,6 +1,6 @@
 package by.tabletka.ui.pages.login;
 
-public class LoginPageXpath {
+public class LoginXpath {
     public static final String BUTTON_LOGIN_ON_MAIN_PAGE_XPATH = "//*[@class='header-wrap js-header original']//*[@data-modal='login']";
     public static final String INPUT_EMAIL_XPATH = "//*[@data-modal='login']//*[@id='login-name']";
     public static final String INPUT_PASSWORD_XPATH = "//*[@data-modal='login']//*[@id='login-pass']";
