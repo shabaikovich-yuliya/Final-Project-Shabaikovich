@@ -32,7 +32,7 @@ public class LoginApiTest extends BaseApiTest{
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("Не найден пользователь или неправильный пароль."));
     }
 
@@ -49,7 +49,7 @@ public class LoginApiTest extends BaseApiTest{
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("Не найден пользователь или неправильный пароль."));
     }
 
@@ -66,7 +66,7 @@ public class LoginApiTest extends BaseApiTest{
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("Не найден пользователь или неправильный пароль."));
     }
 
@@ -83,7 +83,7 @@ public class LoginApiTest extends BaseApiTest{
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("Не найден пользователь или неправильный пароль."));
     }
 
@@ -102,6 +102,6 @@ public class LoginApiTest extends BaseApiTest{
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(1));
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_SUCCESS));
     }
 }
