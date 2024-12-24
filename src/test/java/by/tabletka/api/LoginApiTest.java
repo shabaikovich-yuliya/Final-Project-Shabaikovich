@@ -86,4 +86,22 @@ public class LoginApiTest extends BaseApiTest{
                 .body("status", equalTo(-1))
                 .body("log", equalTo("Не найден пользователь или неправильный пароль."));
     }
+
+    @Test
+    @DisplayName("API. Тест 5 - Успешная авторизация зарегистрированного пользователя")
+    public void testSuccessAuthorizationRegisteredUser() {
+        String emailRegisteredAndConfirmedUser = "yuliya.test@mailinator.com";
+        String passwordRegisteredAndConfirmedUser = "0123456";
+
+        given()
+                .spec(this.loginApiRequest.initRequestSpecificationToLogin())
+                .body(this.loginApiRequest.getBodyLoginRequest(emailRegisteredAndConfirmedUser, passwordRegisteredAndConfirmedUser))
+        .when()
+                .log().all()
+                .post()
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("status", equalTo(1));
+    }
 }
