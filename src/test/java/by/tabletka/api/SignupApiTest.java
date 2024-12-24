@@ -32,7 +32,7 @@ public class SignupApiTest extends BaseApiTest {
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -49,7 +49,7 @@ public class SignupApiTest extends BaseApiTest {
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -66,7 +66,7 @@ public class SignupApiTest extends BaseApiTest {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -83,7 +83,7 @@ public class SignupApiTest extends BaseApiTest {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -94,13 +94,13 @@ public class SignupApiTest extends BaseApiTest {
                 .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
                 .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.EMPTY_VALUE, true))
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -111,13 +111,13 @@ public class SignupApiTest extends BaseApiTest {
                 .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
                 .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.EMPTY_VALUE, true))
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -128,13 +128,13 @@ public class SignupApiTest extends BaseApiTest {
                 .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
                 .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.EMPTY_VALUE, GenerationDataUtil.generatePassword(), true))
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -145,13 +145,13 @@ public class SignupApiTest extends BaseApiTest {
                 .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
                 .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), "1234567" , true))
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -162,13 +162,13 @@ public class SignupApiTest extends BaseApiTest {
                 .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
                 .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         "12", "12", true))
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("ошибка параметров пользователя"));
     }
 
@@ -179,13 +179,13 @@ public class SignupApiTest extends BaseApiTest {
                 .spec(this.signUpApiRequest.initRequestSpecificationToSignup())
                 .body(this.signUpApiRequest.getBodySignupRequest(GenerationDataUtil.generateEmail(), GenerationDataUtil.generateName(),
                         GenerationDataUtil.generatePassword(), GenerationDataUtil.generatePassword(), false))
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
-                .body("status", equalTo(-1))
+                .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_FAILED))
                 .body("log", equalTo("нет согласия на обработку  персональных данных"));
     }
 }
