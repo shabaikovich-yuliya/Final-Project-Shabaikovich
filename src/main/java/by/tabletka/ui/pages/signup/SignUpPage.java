@@ -1,7 +1,7 @@
 package by.tabletka.ui.pages.signup;
 
 import by.tabletka.ui.driver.Driver;
-import by.tabletka.ui.pages.login.LoginPageXpath;
+import by.tabletka.ui.pages.login.LoginXpath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,7 +14,7 @@ public class SignUpPage {
     }
 
     public SignUpPage openSignUpForm() {
-        driver.findElement(By.xpath(LoginPageXpath.BUTTON_LOGIN_ON_MAIN_PAGE_XPATH)).click();
+        driver.findElement(By.xpath(LoginXpath.BUTTON_LOGIN_ON_MAIN_PAGE_XPATH)).click();
         driver.findElement(By.xpath(SignUpPageXpath.SIGNUP_BUTTON_XPATH_ON_LOGIN_MODAL)).click();
         return this;
     }
