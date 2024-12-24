@@ -1,6 +1,6 @@
 package by.tabletka.ui;
 
-import by.tabletka.ui.pages.login.LoginPage;
+import by.tabletka.ui.pages.login.Login;
 import by.tabletka.ui.pages.login.LoginPageMessages;
 import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.Assertions;
@@ -14,10 +14,10 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 1 - Пустое поле E-mail + заполненный пароль")
     public void testEmptyEmail() {
-        LoginPage loginPage = new LoginPage();
+        Login loginPage = new Login();
         loginPage.openLoginForm()
                 .fillEmail(GenerationDataUtil.EMPTY_VALUE)
-                .fillPassword("any-password");
+                .fillPassword(GenerationDataUtil.generatePassword());
 
         Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
     }
@@ -25,10 +25,12 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 2 - Некорректная форма E-mail + заполненный пароль")
     public void testInvalidEmailFormat() {
-        LoginPage loginPage = new LoginPage();
+        String invalidEmail = "test1";
+
+        Login loginPage = new Login();
         loginPage.openLoginForm()
-                .fillEmail("test")
-                .fillPassword("any-password");
+                .fillEmail(invalidEmail)
+                .fillPassword(GenerationDataUtil.generatePassword());
 
         Assertions.assertEquals(LoginPageMessages.INVALID_EMAIL_MESSAGE, loginPage.getEmailErrorMessage());
     }
@@ -36,9 +38,9 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 3 - Заполненный E-mail + пустое поле пароль")
     public void testEmptyPassword() {
-        LoginPage loginPage = new LoginPage();
+        Login loginPage = new Login();
         loginPage.openLoginForm()
-                .fillEmail("test@test.com")
+                .fillEmail(GenerationDataUtil.generateEmail())
                 .fillPassword(GenerationDataUtil.EMPTY_VALUE)
                 .clickLoginButton();
 
@@ -48,10 +50,10 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 4 - Неправильные данные для логина")
     public void testInvalidLoginData() {
-        LoginPage loginPage = new LoginPage();
+        Login loginPage = new Login();
         loginPage.openLoginForm()
-                .fillEmail("test@test.com")
-                .fillPassword("password-test")
+                .fillEmail(GenerationDataUtil.generateEmail())
+                .fillPassword(GenerationDataUtil.generatePassword())
                 .clickLoginButton();
 
         WebElement invalidLoginDataErrorMessageWebElement = loginPage.getInvalidLoginDataErrorMessageWebElement();
@@ -64,10 +66,12 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 5 - Невалидная длина введёного пароля")
     public void testInvalidPasswordLength() {
-        LoginPage loginPage = new LoginPage();
+        String invalidPassword = "12";
+
+        Login loginPage = new Login();
         loginPage.openLoginForm()
-                .fillEmail("test@test.com")
-                .fillPassword("12")
+                .fillEmail(GenerationDataUtil.generateEmail())
+                .fillPassword(invalidPassword)
                 .clickLoginButton();
 
         Assertions.assertEquals(LoginPageMessages.INVALID_PASSWORD_LENGTH_MESSAGE, loginPage.getPasswordErrorMessage());
@@ -76,10 +80,12 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 6 - Не подтверждённый пользователь")
     public void testNotConfirmedUser() {
-        LoginPage loginPage = new LoginPage();
+        String registeredNotConfirmedUserCredentials = "test1@test.com";
+
+        Login loginPage = new Login();
         loginPage.openLoginForm()
-                .fillEmail("test1@test.com")
-                .fillPassword("test1@test.com")
+                .fillEmail(registeredNotConfirmedUserCredentials)
+                .fillPassword(registeredNotConfirmedUserCredentials)
                 .clickLoginButton();
 
         WebElement errorMessageWebElement = loginPage.getNotConfirmedUserErrorMessageWebElement();
@@ -92,8 +98,11 @@ public class LoginPageUiTest extends BaseTest {
     @Test
     @DisplayName("Логин: Тест 7: Пустое поле E-mail и пустое поле Пароль")
     public void testEmptyEmailAndEmptyPassword() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.openLoginForm().clickLoginButton();
+        Login loginPage = new Login();
+        loginPage.openLoginForm()
+                .fillEmail(GenerationDataUtil.EMPTY_VALUE)
+                .fillPassword(GenerationDataUtil.EMPTY_VALUE)
+                .clickLoginButton();
 
         Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getEmailErrorMessage());
         Assertions.assertEquals(LoginPageMessages.FIELD_IS_REQUIRED_MESSAGE, loginPage.getPasswordErrorMessage());
