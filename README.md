@@ -29,7 +29,6 @@ The automation suite ensures the reliability and functionality of the following 
 - **Programming Language**: Java
 - **Automation Framework**: Selenium WebDriver
 - **Test Runner**: JUnit
-- **Reporting**: Allure Reports
 - **Build Tool**: Maven
 
 ---
