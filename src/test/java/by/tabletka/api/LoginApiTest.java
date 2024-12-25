@@ -90,12 +90,12 @@ public class LoginApiTest extends BaseApiTest{
     @Test
     @DisplayName("API. Тест 5 - Успешная авторизация зарегистрированного пользователя")
     public void testSuccessAuthorizationRegisteredUser() {
-        String emailRegisteredAndConfirmedUser = "yuliya.test@mailinator.com";
-        String passwordRegisteredAndConfirmedUser = "0123456";
+        /*String emailRegisteredAndConfirmedUser = "yuliya.test@mailinator.com";
+        String passwordRegisteredAndConfirmedUser = "0123456";*/
 
         given()
                 .spec(this.loginApiRequest.initRequestSpecificationToLogin())
-                .body(this.loginApiRequest.getBodyLoginRequest(emailRegisteredAndConfirmedUser, passwordRegisteredAndConfirmedUser))
+                .body(this.loginApiRequest.getBodyLoginRequest(GenerationDataUtil.EMAIL_REGISTERED_AND_CONFIRMED_USER, GenerationDataUtil.PASSWORD_REGISTERED_AND_CONFIRMED_USER))
         .when()
                 .log().all()
                 .post()
