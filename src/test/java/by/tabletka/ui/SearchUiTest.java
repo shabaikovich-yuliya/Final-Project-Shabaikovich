@@ -11,7 +11,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class SearchUiTest extends BaseTest{
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class SearchUiTest extends BaseTest {
 
     @Test
     @DisplayName("Поиск: Тест 1 - Поиск по валидному запросу")
@@ -28,11 +31,12 @@ public class SearchUiTest extends BaseTest{
         String searchPageTitle = search.getSearchPageTitle().toLowerCase();
         List<WebElement> searchResults = search.getSearchResults();
 
-        Assertions.assertTrue(searchPageTitle.contains(GenerationDataUtil.SEARCH_REQUEST));
-        Assertions.assertFalse(searchResults.isEmpty());
-
+        Assertions.assertAll(
+                () -> assertTrue(searchPageTitle.contains(GenerationDataUtil.SEARCH_REQUEST)),
+                () -> assertFalse(searchResults.isEmpty())
+        );
         searchResults.forEach(
-            (searchResult) -> Assertions.assertTrue(searchResult.getText().toLowerCase().contains(GenerationDataUtil.SEARCH_REQUEST))
+                (searchResult) -> assertTrue(searchResult.getText().toLowerCase().contains(GenerationDataUtil.SEARCH_REQUEST))
         );
     }
 
