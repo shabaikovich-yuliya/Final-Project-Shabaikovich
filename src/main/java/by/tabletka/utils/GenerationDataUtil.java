@@ -5,7 +5,8 @@ import com.github.javafaker.Faker;
 public class GenerationDataUtil {
 
     public static String EMPTY_VALUE = "";
-    public static String SEARCH_REQUEST = "аспирин кардио";
+    public static String INVALID_EMAIL = "test1";
+    public static String SEARCH_REQUEST = "аспирин";
     public static String SEARCH_REQUEST_FOR_NO_RESULTS = "этот запрос получает отсутсвие результата поиска";
     public static String EMAIL_REGISTERED_AND_CONFIRMED_USER = "yuliya.test@mailinator.com";
     public static String PASSWORD_REGISTERED_AND_CONFIRMED_USER = "0123456";

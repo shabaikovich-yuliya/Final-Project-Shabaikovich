@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SignUpPageUiTest extends BaseTest {
 
     @Test
@@ -19,11 +21,13 @@ public class SignUpPageUiTest extends BaseTest {
                 .fillConfirmPassword(GenerationDataUtil.EMPTY_VALUE)
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.EMAIL_FIELD_IS_REQUIRED_MESSAGE, signUpPage.getEmailErrorMessage());
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getPasswordErrorMessage());
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getNameErrorMessage());
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmPasswordErrorMessage());
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmCheckboxErrorMessage());
+        Assertions.assertAll(
+                () -> assertEquals(SignUpPageMessages.EMAIL_FIELD_IS_REQUIRED_MESSAGE, signUpPage.getEmailErrorMessage()),
+                () -> assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getPasswordErrorMessage()),
+                () -> assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getNameErrorMessage()),
+                () -> assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmPasswordErrorMessage()),
+                () -> assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmCheckboxErrorMessage())
+        );
     }
 
     @Test
@@ -38,7 +42,7 @@ public class SignUpPageUiTest extends BaseTest {
                 .clickConfirmCheckbox()
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.EMAIL_FIELD_IS_REQUIRED_MESSAGE, signUpPage.getEmailErrorMessage());
+        assertEquals(SignUpPageMessages.EMAIL_FIELD_IS_REQUIRED_MESSAGE, signUpPage.getEmailErrorMessage());
     }
 
 
@@ -54,7 +58,7 @@ public class SignUpPageUiTest extends BaseTest {
                 .clickConfirmCheckbox()
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getNameErrorMessage());
+        assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getNameErrorMessage());
     }
 
     @Test
@@ -69,7 +73,7 @@ public class SignUpPageUiTest extends BaseTest {
                 .clickConfirmCheckbox()
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getPasswordErrorMessage());
+        assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getPasswordErrorMessage());
     }
 
     @Test
@@ -84,7 +88,7 @@ public class SignUpPageUiTest extends BaseTest {
                 .clickConfirmCheckbox()
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmPasswordErrorMessage());
+        assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmPasswordErrorMessage());
     }
 
     @Test
@@ -99,7 +103,7 @@ public class SignUpPageUiTest extends BaseTest {
                 .fillConfirmPassword(password)
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmCheckboxErrorMessage());
+        assertEquals(SignUpPageMessages.FIELD_IS_REQUIRED_MESSAGE, signUpPage.getConfirmCheckboxErrorMessage());
     }
 
     @Test
@@ -113,6 +117,6 @@ public class SignUpPageUiTest extends BaseTest {
                 .fillConfirmPassword(GenerationDataUtil.generatePassword())
                 .clickSignUpButton();
 
-        Assertions.assertEquals(SignUpPageMessages.PASSWORDS_ARE_NOT_MATCHED_MESSAGE, signUpPage.getConfirmPasswordErrorMessage());
+        assertEquals(SignUpPageMessages.PASSWORDS_ARE_NOT_MATCHED_MESSAGE, signUpPage.getConfirmPasswordErrorMessage());
     }
 }
