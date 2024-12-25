@@ -27,9 +27,10 @@ The automation suite ensures the reliability and functionality of the following 
 ## Technologies Used
 
 - **Programming Language**: Java
+- **Testing Framework**: JUnit 5
 - **Automation Framework**: Selenium WebDriver
-- **Test Runner**: JUnit
 - **Build Tool**: Maven
+- **API Testing**: Rest-Assured
 
 ---
 
