@@ -1,6 +1,6 @@
 # Automation Testing for Tabletka.by
 
-This project is dedicated to automating the testing of key functionalities on the **Tabletka.by** platform using **Java**. It focuses on ensuring that critical features such as login, signup, search, and the kit management work as intended with robust and scalable test scripts.
+This project is dedicated to automating the testing of key functionalities on the **tabletka.by** platform using **Java**. It focuses on ensuring that critical features such as login, signup, search, and the kit management work.
 
 ---
 
