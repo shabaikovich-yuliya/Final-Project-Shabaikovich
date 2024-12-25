@@ -1,6 +1,7 @@
 package by.tabletka.api;
 
 import by.tabletka.api.favorite.FavoriteApiRequest;
+import by.tabletka.utils.GenerationDataUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,11 +25,11 @@ public class FavoriteApiTest extends BaseApiTest {
 
         given()
                 .spec(this.favoriteApiRequest.initRequestSpecificationToAddFavorite())
-                .body(this.favoriteApiRequest.getBodyAddFavoriteRequest(1111))
-                .when()
+                .body(this.favoriteApiRequest.getBodyAddFavoriteRequest(GenerationDataUtil.PRODUCT_ID))
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_SUCCESS));
@@ -39,18 +40,18 @@ public class FavoriteApiTest extends BaseApiTest {
     public void testRemoveFavorite() {
         given()
                 .spec(this.favoriteApiRequest.initRequestSpecificationToAddFavorite())
-                .body(this.favoriteApiRequest.getBodyAddFavoriteRequest(1111))
+                .body(this.favoriteApiRequest.getBodyAddFavoriteRequest(GenerationDataUtil.PRODUCT_ID))
                 .when()
                 .log().all()
                 .post();
 
         given()
                 .spec(this.favoriteApiRequest.initRequestSpecificationToRemoveFavorite())
-                .body(this.favoriteApiRequest.getBodyRemoveFavoriteRequest(1111))
-                .when()
+                .body(this.favoriteApiRequest.getBodyRemoveFavoriteRequest(GenerationDataUtil.PRODUCT_ID))
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_SUCCESS));
@@ -61,7 +62,7 @@ public class FavoriteApiTest extends BaseApiTest {
     public void testRemoveAllFavorites() {
         given()
                 .spec(this.favoriteApiRequest.initRequestSpecificationToAddFavorite())
-                .body(this.favoriteApiRequest.getBodyAddFavoriteRequest(1111))
+                .body(this.favoriteApiRequest.getBodyAddFavoriteRequest(GenerationDataUtil.PRODUCT_ID))
                 .when()
                 .log().all()
                 .post();
@@ -69,10 +70,10 @@ public class FavoriteApiTest extends BaseApiTest {
         given()
                 .spec(this.favoriteApiRequest.initRequestSpecificationToRemoveAllFavorites())
                 .body(this.favoriteApiRequest.getBodyRemoveAllFavoritesRequest())
-                .when()
+        .when()
                 .log().all()
                 .post()
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("status", equalTo(BaseApiRequest.STATUS_RESPONSE_SUCCESS))
